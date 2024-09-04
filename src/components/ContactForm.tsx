@@ -28,7 +28,6 @@ const ContactForm = ({ onClose }:{onClose:any}) => {
     message: '',
   });
 
-  // Handle input change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormValues((prev) => ({ ...prev, [name]: value }));

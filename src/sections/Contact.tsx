@@ -1,11 +1,24 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/no-unescaped-entities */
+"use client";
 import ArrowUpRighticon from "@/assets/icons/arrow-up-right.svg";
 import grainImage from "@/assets/images/grain.jpg";
 import Link from "next/link";
 import { RxCross2 } from "react-icons/rx";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+import { useState } from "react";
+import Modal from "@/components/Modal";
 export const ContactSection = () => {
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const handleOpenModal = () => {
+    setModalVisible(true);
+  };
+  const handleCloseModal = () => {
+    setModalVisible(false);
+  };
+
   return (
     <div className="py-16 pt-12 lg:py-24 lg:pt-20">
       <div className="container">
@@ -33,13 +46,23 @@ export const ContactSection = () => {
             </div>
             <div>
               <Link href={""}>
-                <button className="text-white w-max bg-gray-900 border shadow border-gray-950 inline-flex items-center px-6 h-12 rounded-xl gap-2 mt-8">
+                <button
+                  onClick={handleOpenModal}
+                  className="text-white w-max bg-gray-900 border shadow border-gray-950 inline-flex items-center px-6 h-12 rounded-xl gap-2 mt-8"
+                >
                   <span className="font-semibold">Contact Me</span>
                   <ArrowUpRighticon className="size-4" />
                 </button>
               </Link>
 
-              <div></div>
+              <div>
+                {isModalVisible && (
+                  <Modal
+                    isVisible={isModalVisible}
+                    onClose={handleCloseModal}
+                  />
+                )}
+              </div>
             </div>
           </div>
         </div>
